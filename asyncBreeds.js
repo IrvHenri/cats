@@ -5,12 +5,15 @@ const breedDetailsFromFile = function (breed, callback) {
   console.log("breedDetailsFromFile: Calling readFile...");
   fs.readFile(`./data/${breed}.txt`, "utf8", (error, data) => {
     console.log("In readFile's Callback: it has the data.");
-    if (!error) callback(data);
+    if(error){
+      callback(undefined)
+    } else {
+      callback(data)
+    }
+     
   });
 };
 
-// we try to get the return value
-breedDetailsFromFile("Bombay", (data) => {
-  console.log(data);
-});
+
+module.exports = breedDetailsFromFile
 
